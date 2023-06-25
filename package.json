@@ -1,0 +1,25 @@
+{
+  "name": "tugas-api-automation",
+  "version": "1.0.0",
+  "description": "tugas api automation",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "npx mocha"
+  },
+  "keywords": [
+    "mocha",
+    "chai",
+    "supertest"
+  ],
+  "author": "daffa eka",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0",
+    "sinon": "^15.2.0",
+    "supertest": "^6.3.3"
+  }
+}

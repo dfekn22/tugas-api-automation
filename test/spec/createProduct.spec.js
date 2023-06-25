@@ -1,0 +1,38 @@
+const request = require('supertest');
+const expect = require('chai').expect;
+const AUTH = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBlODJkOTY5LTQwMjYtNGIyZi05YjM0LTVmMDdhODE3YTFiZiIsImNvbXBhbnlJZCI6IjAzODdiZmEwLWY1NjctNDhhNC1hMGE4LTQxMDhjMDcwOTYwZiIsImlhdCI6MTY4NzY2OTI2MX0.WJNz3EVcZRzQVM0T7HqcdTx_HhMk1iwnDQ9FohGOgjo'
+const catID = '811f547e-a24e-4f94-bfe1-b7ed7d11c03f'
+
+describe('Add Product Kasir Aja', function(){
+    //positive scenario/happy flow saat user benar memasukan mandatory items
+    it('Success jika produk berhasil ditambahkan', function(done){
+        request('https://kasir-api.belajarqa.com')
+            .post('/products')
+            .send({category_id: catID, code: 'sayur', name: 'brokoli', price: '5000', cost: '3000', stock: '10'})
+            .set({
+                Authorization : AUTH,
+                Accept : 'aplication/json'
+            })
+            .expect(201)
+            .expect(function(response){
+                console.log(response.body)
+            })
+            .end(done)
+    })
+
+    //negative scenario saat user salah memasukan category id
+    it('Gagal jika salah input category_id', function(done){
+        request('https://kasir-api.belajarqa.com')
+            .post('/products')
+            .send({category_id: '123', code: 'sayur', name: 'brokoli', price: '5000', cost: '3000', stock: '10'})
+            .set({
+                Authorization : AUTH,
+                Accept : 'aplication/json'
+            })
+            .expect(400)
+            .expect(function(response){
+                console.log(response.body)
+            })
+            .end(done)
+    })
+})
